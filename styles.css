@@ -25,6 +25,11 @@
   header p {
     font-size: 1.2em;
   }
+
+  button a {
+    text-decoration: none;
+    color: #f4f4f9;
+  }
   
   main {
     padding: 20px;
