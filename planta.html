@@ -159,10 +159,49 @@
     <main>
     <!-- Sección de streaming -->
     <section class="stream-container">
-        <h2>Video en vivo</h2>
-        <!-- Mostrar streaming de video en vivo -->
-        <img id="stream" src="http://192.168.1.97/stream" alt="Transmisión en vivo"/>
+      <h2>Video en vivo</h2>
+      <img id="stream" src="http://localhost:3000/latest-frame" alt="Transmisión en vivo" />
     </section>
+
+    <!-- Sección de simulación de sensores -->
+    <section class="stream-container">
+        <h2>Datos del sensor</h2>
+        <div class="statistics">
+          <div class="stat-card">
+            <h3>Temperatura 🌡️</h3>
+            <p id="temp">-- °C</p>
+          </div>
+          <div class="stat-card">
+            <h3>Humedad 💧</h3>
+            <p id="humidity">-- %</p>
+          </div>
+        </div>
+    </section>
+
+    <script>
+      setInterval(() => {
+        const img = document.getElementById("stream");
+        img.src = `http://localhost:3000/latest-frame?${Date.now()}`; // cache busting
+      }, 1000); // cada segundo
+    </script>
+
+    <script>
+      function simulateSensorData() {
+        // Simulación de temperatura entre 18 y 35 grados Celsius
+        const temp = (Math.random() * (35 - 18) + 18).toFixed(1);
+        // Simulación de humedad entre 30% y 80%
+        const humidity = (Math.random() * (80 - 30) + 30).toFixed(1);
+
+        document.getElementById('temp').textContent = `${temp} °C`;
+        document.getElementById('humidity').textContent = `${humidity} %`;
+      }
+
+      // Actualiza los datos cada 2 segundos
+      setInterval(simulateSensorData, 2000);
+
+      // Llama una vez al cargar
+      simulateSensorData();
+    </script>
     </main>
 </body>
 </html>
