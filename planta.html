@@ -189,10 +189,16 @@
 
     <script>
       function simulateSensorData() {
-        // Simulación de temperatura entre 18 y 35 grados Celsius
-        const temp = (Math.random() * (35 - 18) + 18).toFixed(1);
-        // Simulación de humedad entre 30% y 80%
-        const humidity = (Math.random() * (80 - 30) + 30).toFixed(1);
+        // Temperatura entre 19 y 22 °C
+        const temp = (Math.random() * (22 - 19) + 19).toFixed(1);
+
+        // Humedad relacionada con la temperatura:
+        // Supongamos que a menor temperatura, mayor humedad, y viceversa.
+        // Rango de humedad: 45% a 65%
+        const humidityMin = 65 - (temp - 19) * 10; // Baja 10% por grado
+        const humidityMax = humidityMin + 5; // Rango estrecho de 5%
+
+        const humidity = (Math.random() * (humidityMax - humidityMin) + humidityMin).toFixed(1);
 
         document.getElementById('temp').textContent = `${temp} °C`;
         document.getElementById('humidity').textContent = `${humidity} %`;
@@ -203,6 +209,7 @@
 
       // Llama una vez al cargar
       simulateSensorData();
+
     </script>
     </main>
 </body>
