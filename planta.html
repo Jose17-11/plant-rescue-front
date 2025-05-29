@@ -160,6 +160,7 @@
     <!-- Sección de streaming -->
     <section class="stream-container">
       <h2>Video en vivo</h2>
+      <!-- produccion: https://plant-rescue-backend.agencia1711.lat/ -->
       <img id="stream" src="http://localhost:3000/latest-frame" alt="Transmisión en vivo" />
     </section>
 
@@ -181,6 +182,7 @@
     <script>
       setInterval(() => {
         const img = document.getElementById("stream");
+        // produccion: https://plant-rescue-backend.agencia1711.lat/
         img.src = `http://localhost:3000/latest-frame?${Date.now()}`; // cache busting
       }, 1000); // cada segundo
     </script>
